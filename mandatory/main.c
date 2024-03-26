@@ -6,7 +6,7 @@
 /*   By: mvoisin <mvoisin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/16 16:41:31 by Matprod           #+#    #+#             */
-/*   Updated: 2024/03/26 18:09:31 by mvoisin          ###   ########.fr       */
+/*   Updated: 2024/03/26 18:49:08 by mvoisin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,6 @@ int	main(int argc, char **argv)
     char **array;
     int i = 0; 
     array = fd_to_array(argv[1]);
-    //ft_printf("%s",array[0]);
     if(!array)
         return(ft_printf("error\n"));
     while(array[i])
