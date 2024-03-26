@@ -7,6 +7,7 @@ src  = 		get_next_line_bonus.c\
 			main.c\
 			new_window.c\
 			map.c\
+			utils.c\
 
 
 SRCS = $(addprefix ./mandatory/, $(src))

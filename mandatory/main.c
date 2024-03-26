@@ -6,7 +6,7 @@
 /*   By: mvoisin <mvoisin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/16 16:41:31 by Matprod           #+#    #+#             */
-/*   Updated: 2024/03/26 16:16:35 by mvoisin          ###   ########.fr       */
+/*   Updated: 2024/03/26 18:09:31 by mvoisin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	handle_input(int keysym, t_data *data)
     if (keysym == XK_Escape)
     {
         ft_printf("The %d key (ESC) has been pressed\n\n", keysym);
-        free_everything(&data);
+        free_everything(data);
         exit(1);
     }
     ft_printf("The %d key has been pressed\n\n", keysym);
@@ -33,10 +33,25 @@ int	handle_input(int keysym, t_data *data)
 
 int	main(int argc, char **argv)
 {
-    t_data	data;
+/*     t_data	data; */
 
-/*     if(argc != 1)
-        return(NULL); */
+    if(argc > 2)
+        return(0); 
+    char **array;
+    int i = 0; 
+    array = fd_to_array(argv[1]);
+    //ft_printf("%s",array[0]);
+    if(!array)
+        return(ft_printf("error\n"));
+    while(array[i])
+    {
+        ft_printf("map = %s",array[i]);
+        i++;
+    }
+    free_array(array);
+
+
+/* 
     data.mlx = mlx_init();
 	if (data.mlx == NULL )
 		return (MALLOC_ERROR);
@@ -48,5 +63,6 @@ int	main(int argc, char **argv)
     put_image(data,data.texture[1],63,1);  	
 	// EVENT LOOP
 	mlx_loop(data.mlx);
- 	mlx_key_hook(data.win, handle_input, &data);	 		
+ 	mlx_key_hook(data.win, handle_input, &data);	 */
+    return(1);	
 }

@@ -6,7 +6,7 @@
 /*   By: mvoisin <mvoisin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/16 16:42:54 by Matprod           #+#    #+#             */
-/*   Updated: 2024/03/26 16:17:09 by mvoisin          ###   ########.fr       */
+/*   Updated: 2024/03/26 17:03:51 by mvoisin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,14 @@ typedef struct s_mlx_data
 void	*new_window(void *mlx_connection, int height, int width, char *window_name);
 
 void	free_everything(t_data *data);
+
+void	free_array(char **array);
+
+char	*ft_strdup(const char *s);
 //	MAP FUNCTION
-char *fd_to_array(char *argv);
+
+char **fd_to_array(char *argv);
+
 // IMAGE FUNCTION
 void	put_image(t_data data, void *image, int x, int y);
 void	*ft_open_xpm(t_data *data, char *path, int index);

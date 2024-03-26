@@ -1,39 +1,13 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_everything.c                                  :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mvoisin <mvoisin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/24 16:28:41 by Matprod           #+#    #+#             */
-/*   Updated: 2024/03/26 17:38:46 by mvoisin          ###   ########.fr       */
+/*   Created: 2024/03/26 17:03:17 by mvoisin           #+#    #+#             */
+/*   Updated: 2024/03/26 17:16:13 by mvoisin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
-void	free_everything(t_data *data)
-{
-	int i;
-
-	i = -1;
-	while(++i < 2)
-	    mlx_destroy_image(data->mlx, data->texture[i]);
-    mlx_destroy_image(data->mlx, data->texture[1]); 
-    mlx_destroy_window(data->mlx, data->win);
-    mlx_destroy_display(data->mlx);
-    free(data->mlx);
-}
-
-void	free_array(char **array)
-{
-	int i;
-
-	i = 0;
-	while(array[i])
-	{
-		free(array[i]);
-		i++;
-	}
-	free(array);
-}
