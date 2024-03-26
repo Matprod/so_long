@@ -1,15 +1,18 @@
 NAME = so_long
 
-src  = 		main.c\
-			new_window.c\
+src  = 		get_next_line_bonus.c\
+			get_next_line_utils_bonus.c\
+			image.c\
 			free_everything.c\
+			main.c\
+			new_window.c\
+			map.c\
+
 
 SRCS = $(addprefix ./mandatory/, $(src))
-
 SRC_BONUS = 
 
 OBJS = $(SRCS:.c=.o)
-
 OBJS_BONUS = ${SRC_BONUS:.c=.o}
 
 PRINTF_A = ft_printf.a
@@ -18,6 +21,7 @@ PRINTF_DIR = lib/ft_printf/
 MLX_A = libmlx.a
 MLX_DIR = lib/mlx/
 
+FLAGS = lib/mlx/libmlx.a lib/mlx/libmlx_Linux.a -L. -lXext -L. -lX11
 FT_PRINTF = $(addprefix $(PRINTF_DIR), $(PRINTF_A))
 
 INCLUDE = includes/
@@ -29,12 +33,12 @@ all: ${NAME}
 
 $(NAME): ${OBJS}
 	$(MAKE) -C $(PRINTF_DIR)
-	cc ${OBJS} lib/mlx/libmlx.a lib/mlx/libmlx_Linux.a -L. -lXext -L. -lX11 $(FT_PRINTF) -o $(NAME)
+	cc ${OBJS} $(FLAGS) $(FT_PRINTF) -o $(NAME)
 	@echo "____________________________________________________________________________________________________________"
 
 bonus: $(OBJS_BONUS)
 	$(MAKE) -C $(PRINTF_DIR)
-	cc ${OBJS_BONUS} lib/mlx/libmlx.a lib/mlx/libmlx_Linux.a -L. -lXext -L. -lX11 $(FT_PRINTF) -o $(NAME)
+	cc ${OBJS_BONUS} $(FLAGS) $(FT_PRINTF) -o $(NAME)
 	@echo "____________________________________________________________________________________________________________"
 
 clean:
