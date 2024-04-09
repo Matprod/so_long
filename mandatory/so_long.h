@@ -6,7 +6,7 @@
 /*   By: mvoisin <mvoisin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/16 16:42:54 by Matprod           #+#    #+#             */
-/*   Updated: 2024/04/09 17:04:18 by mvoisin          ###   ########.fr       */
+/*   Updated: 2024/04/09 17:58:33 by mvoisin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ typedef struct s_mlx_data
     void	*mlx;			// pointer of the mlx connection
     void	*win;			// pointer of the window
 	
-    void	*texture[3];	// [n] = number of texture
+    void	*texture[4];	// [n] = number of texture
     int		img_size;   	// 64 * 64
     int		height_max;     // h * 64
     int		width_max;      // w * 64
@@ -80,11 +80,13 @@ char	*ft_strdup(const char *s);
 
 #define WALL_PATH "mandatory/Images/wall.xpm"
 #define GRASS_PATH "mandatory/Images/grass64.xpm"
-#define ROBOT_PATH "mandatory/Images/robot.xpm"
+#define ROBOT_PATH "mandatory/Images/robot_grass.xpm"
+#define COIN_PATH "mandatory/Images/coin_grass.xpm"
 
 
 #define GRASS_INDEX 0
 #define WALL_INDEX 1
 #define ROBOT_INDEX 2
+#define COIN_INDEX 3
 
 #endif

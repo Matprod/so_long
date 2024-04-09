@@ -6,7 +6,7 @@
 /*   By: mvoisin <mvoisin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 12:51:36 by mvoisin           #+#    #+#             */
-/*   Updated: 2024/04/09 17:06:38 by mvoisin          ###   ########.fr       */
+/*   Updated: 2024/04/09 17:58:06 by mvoisin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ static void map_put_texture(t_data *data, char texture, int width, int height)
 	else if (texture == 'P')
 	{
 		put_image(*data,data->texture[ROBOT_INDEX],width * 64, height * 64 );
-		put_image(*data,data->texture[GRASS_INDEX],width * 64, height * 64 );
 	}
 	else if (texture == 'E')
 	{
@@ -33,7 +32,7 @@ static void map_put_texture(t_data *data, char texture, int width, int height)
 	}
 	else if (texture == 'C')
 	{
-		put_image(*data,data->texture[1],width * 64, height * 64 );
+		put_image(*data,data->texture[COIN_INDEX],width * 64, height * 64 );
 	}
 	
 }

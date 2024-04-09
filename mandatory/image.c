@@ -6,7 +6,7 @@
 /*   By: mvoisin <mvoisin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 18:27:29 by Matprod           #+#    #+#             */
-/*   Updated: 2024/04/09 16:49:19 by mvoisin          ###   ########.fr       */
+/*   Updated: 2024/04/09 17:57:36 by mvoisin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,4 +47,5 @@ void	img_init(t_data *data)
 	data->texture[0] = ft_open_xpm(data, GRASS_PATH, 0);
 	data->texture[1] = ft_open_xpm(data, WALL_PATH, 1);
 	data->texture[2] = ft_open_xpm(data, ROBOT_PATH, 2);
+	data->texture[3] = ft_open_xpm(data, COIN_PATH, 2);
 }
