@@ -6,7 +6,7 @@
 /*   By: mvoisin <mvoisin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 19:18:14 by Matprod           #+#    #+#             */
-/*   Updated: 2024/03/26 15:45:27 by mvoisin          ###   ########.fr       */
+/*   Updated: 2024/04/09 15:55:51 by mvoisin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,5 +80,6 @@ char	*ft_strdup(const char *s)
 		index ++;
 	}
 	dup_str[index] = '\0';
+
 	return (dup_str);
 }

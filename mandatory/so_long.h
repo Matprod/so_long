@@ -6,7 +6,7 @@
 /*   By: mvoisin <mvoisin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/16 16:42:54 by Matprod           #+#    #+#             */
-/*   Updated: 2024/03/26 17:03:51 by mvoisin          ###   ########.fr       */
+/*   Updated: 2024/04/09 17:04:18 by mvoisin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,15 @@
 
 typedef struct s_mlx_data
 {
-    void	*mlx;
-    void	*win;
+    void	*mlx;			// pointer of the mlx connection
+    void	*win;			// pointer of the window
 	
-    void	*texture[2];
-    int		img_size;
+    void	*texture[3];	// [n] = number of texture
+    int		img_size;   	// 64 * 64
+    int		height_max;     // h * 64
+    int		width_max;      // w * 64
+    int		height;			// number of case
+    int		width;			// number of case
 }				t_data;
 
 /*				MANDATORY FUNCTIONS			*/
@@ -50,6 +54,11 @@ char	*ft_strdup(const char *s);
 
 char **fd_to_array(char *argv);
 
+int		get_map_height(char **map);
+int		get_map_width(char**map);
+void 	map_len_init(t_data *data,char **map);
+char	*map_array_to_string(char **map);
+void	put_map_in_window(t_data *data, char **map);
 // IMAGE FUNCTION
 void	put_image(t_data data, void *image, int x, int y);
 void	*ft_open_xpm(t_data *data, char *path, int index);
@@ -67,9 +76,15 @@ int		ft_strchr(const char *s, int c);
 
 char	*ft_strdup(const char *s);
 
-/*				IMAGES PATH				*/
+/*				IMAGES PATH	AND INDEX			*/
 
-#define GRASS_PATH "mandatory/Images/grass64.xpm"
 #define WALL_PATH "mandatory/Images/wall.xpm"
+#define GRASS_PATH "mandatory/Images/grass64.xpm"
+#define ROBOT_PATH "mandatory/Images/robot.xpm"
+
+
+#define GRASS_INDEX 0
+#define WALL_INDEX 1
+#define ROBOT_INDEX 2
 
 #endif

@@ -6,15 +6,14 @@
 /*   By: mvoisin <mvoisin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/16 16:41:31 by Matprod           #+#    #+#             */
-/*   Updated: 2024/03/26 18:49:08 by mvoisin          ###   ########.fr       */
+/*   Updated: 2024/04/09 16:57:37 by mvoisin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
 #define MALLOC_ERROR	1
-#define WIDTH			600
-#define HEIGHT			800
+
 
 int	handle_input(int keysym, t_data *data)
 {
@@ -23,45 +22,56 @@ int	handle_input(int keysym, t_data *data)
     //find / -name keysymdef.h 2>/dev/null
     if (keysym == XK_Escape)
     {
-        ft_printf("The %d key (ESC) has been pressed\n\n", keysym);
-        free_everything(data);
-        exit(1);
+        printf("The %d key (ESC) has been pressed\n\n", keysym);
+		free_everything(data);
+        exit(0);
     }
-    ft_printf("The %d key has been pressed\n\n", keysym);
+    printf("The %d key has been pressed\n\n", keysym);
     return (0);
 }
 
 int	main(int argc, char **argv)
 {
-/*     t_data	data; */
+    t_data	data;
+    int     i;
 
+    i = 0;
+    //INIT MAP
     if(argc > 2)
         return(0); 
-    char **array;
-    int i = 0; 
-    array = fd_to_array(argv[1]);
-    if(!array)
+    char **map;
+	
+    map = fd_to_array(argv[1]);
+
+    if(!map)
         return(ft_printf("error\n"));
-    while(array[i])
+    while(map[i])
     {
-        ft_printf("map = %s",array[i]);
+        ft_printf("map = %s",map[i]);
         i++;
     }
-    free_array(array);
+    map_len_init(&data, map);
+    ft_printf("\nheight = %d || width = %d || height_max = %d || width max = %d \n",data.height,data.width, data.height_max, data.width_max); 
 
+    // INIT CONNECTION
 
-/* 
     data.mlx = mlx_init();
-	if (data.mlx == NULL )
+	if (data.mlx == NULL)
 		return (MALLOC_ERROR);
 
-	data.win = new_window(data.mlx, WIDTH, HEIGHT , "so_long");
-    
+	data.win = new_window(data.mlx, data.width_max, data.height_max , "so_long"); 
+
+    // INIT IMAGE
+
     img_init(&data);
-    put_image(data,data.texture[0],0,1);
-    put_image(data,data.texture[1],63,1);  	
+    put_map_in_window(&data,map);
+
 	// EVENT LOOP
+ 	mlx_key_hook(data.win, handle_input, &data);
 	mlx_loop(data.mlx);
- 	mlx_key_hook(data.win, handle_input, &data);	 */
+
+    // FREE 
+    free_array(map);
+	
     return(1);	
 }
