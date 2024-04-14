@@ -3,16 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvoisin <mvoisin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: Matprod <matprod42@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/16 16:41:31 by Matprod           #+#    #+#             */
-/*   Updated: 2024/04/09 16:57:37 by mvoisin          ###   ########.fr       */
+/*   Updated: 2024/04/14 17:11:55 by Matprod          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
-#define MALLOC_ERROR	1
 
 
 int	handle_input(int keysym, t_data *data)
@@ -39,18 +37,20 @@ int	main(int argc, char **argv)
     //INIT MAP
     if(argc > 2)
         return(0); 
-    char **map;
 	
-    map = fd_to_array(argv[1]);
+    data.map = fd_to_array(argv[1]);
 
-    if(!map)
+    if(!data.map)
         return(ft_printf("error\n"));
-    while(map[i])
+    while(data.map[i])
     {
-        ft_printf("map = %s",map[i]);
+        ft_printf("map = %s",data.map[i]);
         i++;
     }
-    map_len_init(&data, map);
+    var_init(&data);
+    if (data.mlx == NULL)
+		return (MALLOC_ERROR);
+   /*  map_len_init(&data, data.map);
     ft_printf("\nheight = %d || width = %d || height_max = %d || width max = %d \n",data.height,data.width, data.height_max, data.width_max); 
 
     // INIT CONNECTION
@@ -64,14 +64,15 @@ int	main(int argc, char **argv)
     // INIT IMAGE
 
     img_init(&data);
-    put_map_in_window(&data,map);
+    put_map_in_window(&data,data.map); */
 
 	// EVENT LOOP
  	mlx_key_hook(data.win, handle_input, &data);
+    mlx_hook(data.win, 17, 0, free_everything, &data);
 	mlx_loop(data.mlx);
 
     // FREE 
-    free_array(map);
+    //free_array(data.map);
 	
     return(1);	
 }

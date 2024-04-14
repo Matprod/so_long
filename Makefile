@@ -3,11 +3,13 @@ NAME = so_long
 src  = 		get_next_line_bonus.c\
 			get_next_line_utils_bonus.c\
 			image.c\
+			init.c\
 			free_everything.c\
 			main.c\
+			map_display.c\
+			map_error.c\
+			map_parsing.c\
 			new_window.c\
-			map.c\
-			parsing.c\
 			utils.c\
 
 

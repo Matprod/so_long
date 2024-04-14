@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map.c                                              :+:      :+:    :+:   */
+/*   map_parsing.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvoisin <mvoisin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: Matprod <matprod42@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 15:22:43 by mvoisin           #+#    #+#             */
-/*   Updated: 2024/04/09 17:05:52 by mvoisin          ###   ########.fr       */
+/*   Updated: 2024/04/12 16:22:35 by Matprod          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,12 @@ static int	get_nb_line_fd(char *argv)
 	close(fd);
 	return(nb);
 }
+static char *close_and_free(char **array, int fd)
+{
+    free_array(array);
+    close(fd);
+	return (NULL);
+}
 
 char **fd_to_array(char *argv)
 {
@@ -47,11 +53,7 @@ char **fd_to_array(char *argv)
         return NULL;
     array = (char **)malloc(sizeof(char *) * (nb + 1));
     if (!array)
-	{
-		free_array(array);
-        close(fd);
-        return NULL;
-    }
+		close_and_free(array,fd);
     nb = 0;
     while ((line = get_next_line(fd)) != NULL)
 	{
@@ -63,32 +65,5 @@ char **fd_to_array(char *argv)
     return (array);
 }
 
-int get_map_height(char **map)
-{
-    int height;
 
-    height = 0;
-    while(*map++)
-        height++;
-    return(height);
-}
-
-int get_map_width(char **map)
-{
-    int width;
-
-    width = 0;
-    while (*(*map + width) != '\n')
-        width++;
-    return(width);
-}
-
-void map_len_init(t_data *data,char **map)
-{
-    data->height_max = 64 * get_map_height(map);
-    data->width_max = 64 * get_map_width(map);
-    data->height    = get_map_height(map);
-    data->width     = get_map_width(map);
-    //free_array(map);
-}
 

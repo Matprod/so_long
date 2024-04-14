@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils_bonus.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvoisin <mvoisin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: Matprod <matprod42@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 19:18:14 by Matprod           #+#    #+#             */
-/*   Updated: 2024/04/09 15:55:51 by mvoisin          ###   ########.fr       */
+/*   Updated: 2024/04/12 16:10:00 by Matprod          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ char	*ft_strjoin(char *s1, char const *s2)
 	return (dest);
 }
 
-char	*ft_strdup(const char *s)
+char	*ft_strdup(char *s)
 {
 	char			*dup_str;
 	unsigned int	index;
@@ -80,6 +80,6 @@ char	*ft_strdup(const char *s)
 		index ++;
 	}
 	dup_str[index] = '\0';
-
+	//free(s);
 	return (dup_str);
 }
