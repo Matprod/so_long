@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   image.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvoisin <mvoisin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: Matprod <matprod42@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 18:27:29 by Matprod           #+#    #+#             */
-/*   Updated: 2024/04/09 17:57:36 by mvoisin          ###   ########.fr       */
+/*   Updated: 2024/04/14 22:57:46 by Matprod          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	put_image(t_data data, void *image, int x, int y)
+void	put_image(t_data *data, void *image, int x, int y)
 {
-	mlx_put_image_to_window(data.mlx, data.win, image, x, y);
+	mlx_put_image_to_window(data->mlx, data->win, image, x, y);
 }
 
 void	fail_xpm(t_data *data, int index)
@@ -24,10 +24,11 @@ void	fail_xpm(t_data *data, int index)
 	i = -1;
 	while (++i < index)
 		mlx_destroy_image(data->mlx, data->texture[i]);
+	ft_printf("FAIL");
 	mlx_destroy_window(data->mlx, data->win);
 	mlx_destroy_display(data->mlx);
 	free(data->mlx);
-	//free_array(data->map);
+	free_array(data->map);
 	exit(0);
 }
 
@@ -47,5 +48,6 @@ void	img_init(t_data *data)
 	data->texture[0] = ft_open_xpm(data, GRASS_PATH, 0);
 	data->texture[1] = ft_open_xpm(data, WALL_PATH, 1);
 	data->texture[2] = ft_open_xpm(data, ROBOT_PATH, 2);
-	data->texture[3] = ft_open_xpm(data, COIN_PATH, 2);
+	data->texture[3] = ft_open_xpm(data, COIN_PATH, 3);
+	data->texture[4] = ft_open_xpm(data, WALL2_PATH, 4);
 }

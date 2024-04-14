@@ -6,7 +6,7 @@
 /*   By: Matprod <matprod42@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/16 16:41:31 by Matprod           #+#    #+#             */
-/*   Updated: 2024/04/14 17:11:55 by Matprod          ###   ########.fr       */
+/*   Updated: 2024/04/14 22:59:18 by Matprod          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,48 +31,26 @@ int	handle_input(int keysym, t_data *data)
 int	main(int argc, char **argv)
 {
     t_data	data;
-    int     i;
 
-    i = 0;
     //INIT MAP
     if(argc > 2)
         return(0); 
 	
     data.map = fd_to_array(argv[1]);
-
     if(!data.map)
-        return(ft_printf("error\n"));
-    while(data.map[i])
-    {
-        ft_printf("map = %s",data.map[i]);
-        i++;
-    }
+        return(1);
+        
     var_init(&data);
     if (data.mlx == NULL)
 		return (MALLOC_ERROR);
-   /*  map_len_init(&data, data.map);
-    ft_printf("\nheight = %d || width = %d || height_max = %d || width max = %d \n",data.height,data.width, data.height_max, data.width_max); 
-
-    // INIT CONNECTION
-
-    data.mlx = mlx_init();
-	if (data.mlx == NULL)
-		return (MALLOC_ERROR);
-
-	data.win = new_window(data.mlx, data.width_max, data.height_max , "so_long"); 
-
-    // INIT IMAGE
-
-    img_init(&data);
-    put_map_in_window(&data,data.map); */
 
 	// EVENT LOOP
- 	mlx_key_hook(data.win, handle_input, &data);
-    mlx_hook(data.win, 17, 0, free_everything, &data);
+ 	mlx_hook(data.win, 2, 1L << 0, key_gestion, &data);
+    //mlx_hook(data.win, 17, 0, free_everything, &data);
 	mlx_loop(data.mlx);
-
+    
     // FREE 
-    //free_array(data.map);
+    free_array(data.map);
 	
     return(1);	
 }

@@ -6,7 +6,7 @@
 /*   By: Matprod <matprod42@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/16 16:42:54 by Matprod           #+#    #+#             */
-/*   Updated: 2024/04/14 17:09:19 by Matprod          ###   ########.fr       */
+/*   Updated: 2024/04/14 20:39:13 by Matprod          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,12 +41,16 @@
 # define GRASS_PATH "mandatory/Images/grass64.xpm"
 # define ROBOT_PATH "mandatory/Images/robot_grass.xpm"
 # define COIN_PATH "mandatory/Images/coin_grass.xpm"
+# define WALL2_PATH "mandatory/Images/wall2.xpm"
 
 
 # define GRASS_INDEX 0
 # define WALL_INDEX 1
 # define ROBOT_INDEX 2
 # define COIN_INDEX 3
+# define WALL_INDEX2 4
+
+# define TEXTURE_NUMBER 5
 ////////////////////////////////////////////////////
 
 typedef enum
@@ -64,7 +68,7 @@ typedef struct s_point
 typedef struct s_player
 {
 	char	current;
-	char	*pos;
+	//char	*pos;   direction of the player
 	int		x;
 	int		y;
 	int		move;
@@ -74,7 +78,7 @@ typedef struct s_mlx_data
 {
     void	*mlx;			// pointer of the mlx connection
     void	*win;			// pointer of the window
-    void	*texture[4];	// [n] = number of texture
+    void	*texture[5];	// [n] = number of texture
 	
 	char	**map;			//map
     int		img_size;   	// 64 * 64
@@ -115,7 +119,7 @@ void 	map_len_init(t_data *data,char **map);
 char	*map_array_to_string(char **map);
 void	put_map_in_window(t_data *data, char **map);
 // IMAGE FUNCTION
-void	put_image(t_data data, void *image, int x, int y);
+void	put_image(t_data *data, void *image, int x, int y);
 void	*ft_open_xpm(t_data *data, char *path, int index);
 void	img_init(t_data *data);
 // GNL FUNCTION
@@ -131,5 +135,15 @@ int		ft_strchr(const char *s, int c);
 
 char	*ft_strdup( char *s);
 
+// MOVE
+void	move(t_data *data, char *direction);
+
+int	key_gestion(int keycode, t_data *data);
+
+//UTILS
+
+int		ft_strcmp(char *s1, char *s2);
+
+void	item_collect(t_data *data);
 
 #endif

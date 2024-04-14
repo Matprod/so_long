@@ -6,7 +6,7 @@
 /*   By: Matprod <matprod42@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 12:51:36 by mvoisin           #+#    #+#             */
-/*   Updated: 2024/04/12 16:02:40 by Matprod          ###   ########.fr       */
+/*   Updated: 2024/04/14 22:59:06 by Matprod          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,23 +16,26 @@ static void map_put_texture(t_data *data, char texture, int width, int height)
 {
 	if(texture == '1')
 	{
-		put_image(*data,data->texture[WALL_INDEX],width * 64, height * 64 );
+		put_image(data,data->texture[WALL_INDEX],width * 64, height * 64 );
 	}
 	else if (texture == '0')
 	{
-		put_image(*data,data->texture[GRASS_INDEX],width * 64, height * 64 );
+		put_image(data,data->texture[GRASS_INDEX],width * 64, height * 64 );
 	}
 	else if (texture == 'P')
 	{
-		put_image(*data,data->texture[ROBOT_INDEX],width * 64, height * 64 );
+		data->player.x = width * 64;
+		data->player.y = height * 64;
+		put_image(data,data->texture[ROBOT_INDEX],width * 64, height * 64 );
 	}
 	else if (texture == 'E')
 	{
-		put_image(*data,data->texture[1],width * 64, height * 64 );
+		put_image(data,data->texture[WALL_INDEX2],width * 64, height * 64 );
 	}
 	else if (texture == 'C')
 	{
-		put_image(*data,data->texture[COIN_INDEX],width * 64, height * 64 );
+		put_image(data,data->texture[COIN_INDEX],width * 64, height * 64 );
+		data->item_total += 1;
 	}
 	
 }
@@ -52,7 +55,7 @@ void put_map_in_window(t_data *data, char **map)
 			map_put_texture(data, map[height][width], width, height);
 		}
 	}
-	free_array(map);
+	//free_array(map);
 }
 
 int get_map_height(char **map)
