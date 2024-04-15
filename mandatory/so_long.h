@@ -6,7 +6,7 @@
 /*   By: Matprod <matprod42@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/16 16:42:54 by Matprod           #+#    #+#             */
-/*   Updated: 2024/04/14 20:39:13 by Matprod          ###   ########.fr       */
+/*   Updated: 2024/04/15 18:10:44 by Matprod          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,10 +135,14 @@ int		ft_strchr(const char *s, int c);
 
 char	*ft_strdup( char *s);
 
+// ERROR
+bool	check_size(t_data *data, char **map);
+
 // MOVE
 void	move(t_data *data, char *direction);
 
 int	key_gestion(int keycode, t_data *data);
+
 
 //UTILS
 
