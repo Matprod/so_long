@@ -6,7 +6,7 @@
 /*   By: Matprod <matprod42@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/16 16:42:54 by Matprod           #+#    #+#             */
-/*   Updated: 2024/04/15 18:10:44 by Matprod          ###   ########.fr       */
+/*   Updated: 2024/04/22 17:19:06 by Matprod          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@
 # endif
 
 # define MALLOC_ERROR	1
+# define ERROR  1
 
 /*                   KEY VALUE                   */
 # define ESC 65307
@@ -88,7 +89,7 @@ typedef struct s_mlx_data
     int		width;          // number of case
 
     // ITEMS
-    int			item_inond;
+    int			item_fill;
 	int			item_total;
 	int			items;			
     // PLAYER    
@@ -137,6 +138,10 @@ char	*ft_strdup( char *s);
 
 // ERROR
 bool	check_size(t_data *data, char **map);
+
+int     flood_fill(t_data *data);
+
+bool check_error(t_data *data, char **map);
 
 // MOVE
 void	move(t_data *data, char *direction);

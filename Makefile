@@ -9,6 +9,7 @@ src  = 		get_next_line_bonus.c\
 			map_display.c\
 			map_error.c\
 			map_parsing.c\
+			map_traverse.c\
 			move_input.c\
 			new_window.c\
 			utils.c\

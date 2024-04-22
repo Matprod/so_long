@@ -6,7 +6,7 @@
 /*   By: Matprod <matprod42@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/16 16:41:31 by Matprod           #+#    #+#             */
-/*   Updated: 2024/04/15 18:06:45 by Matprod          ###   ########.fr       */
+/*   Updated: 2024/04/22 17:20:10 by Matprod          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,26 +33,23 @@ int	main(int argc, char **argv)
     t_data	data;
 
     if(argc > 2)
-        return(0); 
-	
+        return(ERROR); 
     data.map = fd_to_array(argv[1]);
     if(!data.map)
-        return(1);
+        return(ERROR);
     var_init(&data);
-    if(check_size(&data, data.map) == FALSE)
+    if(check_error(&data, data.map) == FALSE)
     {
-        ft_printf("error size");
-        return(1);
-    } 
+        free_everything(&data);
+        return(ERROR);
+    }
     if (data.mlx == NULL)
 		return (MALLOC_ERROR);
 
     mlx_hook(data.win, 2, 1L << 0, key_gestion, &data);
-    //mlx_hook(data.win, 17, 0, free_everything, &data);
+    mlx_hook(data.win, 17, 0, free_everything, &data);
 	mlx_loop(data.mlx);
-    
-    // FREE 
-    free_array(data.map);
+    //free_array(data.map);
 	
     return(1);	
 }

@@ -6,7 +6,7 @@
 /*   By: Matprod <matprod42@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 12:51:36 by mvoisin           #+#    #+#             */
-/*   Updated: 2024/04/14 22:59:06 by Matprod          ###   ########.fr       */
+/*   Updated: 2024/04/22 17:23:47 by Matprod          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ static void map_put_texture(t_data *data, char texture, int width, int height)
 		put_image(data,data->texture[COIN_INDEX],width * 64, height * 64 );
 		data->item_total += 1;
 	}
-	
 }
 
 
