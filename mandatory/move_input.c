@@ -6,12 +6,11 @@
 /*   By: Matprod <matprod42@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/12 17:23:14 by Matprod           #+#    #+#             */
-/*   Updated: 2024/04/14 22:51:55 by Matprod          ###   ########.fr       */
+/*   Updated: 2024/05/13 08:16:21 by Matprod          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
 
 int	key_gestion(int keycode, t_data *data)
 {
@@ -28,16 +27,14 @@ int	key_gestion(int keycode, t_data *data)
 	return (0);
 }
 
-
-
 void	put_current(t_data *data)
 {
 	int const	x = data->player.x;
 	int const	y = data->player.y;
 
-	if (data->player.current == 'E' && data->items != data->item_total)
+	if (data->player.curr == 'E' && data->items != data->item_total)
 		put_image(data, data->texture[WALL_INDEX2], x, y);
-	else if (data->player.current == 'P')
+	else if (data->player.curr == 'P')
 		put_image(data, data->texture[GRASS_INDEX], x, y);
 	else
 		put_image(data, data->texture[GRASS_INDEX], x, y);
@@ -76,27 +73,21 @@ void	move(t_data *data, char *direction)
 	char const	next = get_next(data, direction);
 	int			x;
 	int			y;
-	if(!(data->player.y / 64 > data->width_max || data->player.y / 64 < 0 || data->player.x / 64 > data->height_max || data->player.x / 64 < 0))
+
+	if (!(data->player.y / 64 > data->width_max || data->player.y / 64 < 0
+			|| data->player.x / 64 > data->h_max || data->player.x / 64 < 0))
 	{
-		data->player.current = data->map[data->player.y / 64][data->player.x / 64];
+		data->player.curr = data->map[data->player.y / 64][data->player.x / 64];
 		if (next == 'E' && data->items == data->item_total)
 			free_everything(data);
 		if (next != '1')
 		{
 			ft_printf("Moves : %d\n", ++data->player.move);
-			put_current(data);											
+			put_current(data);
 			edit_pos(data, direction);
 			x = data->player.x;
 			y = data->player.y;
-			if (next == 'E')
-				put_image(data, data->texture[WALL_INDEX2], x, y);
-			else if (next == 'P')
-				put_image(data, data->texture[ROBOT_INDEX], x, y);
-			else
-				put_image(data, data->texture[ROBOT_INDEX], x, y);
-			if (next == 'C')
-				item_collect(data);
+			put_image_move(data, next, x, y);
 		}
 	}
-
 }

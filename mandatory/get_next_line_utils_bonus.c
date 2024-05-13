@@ -6,7 +6,7 @@
 /*   By: Matprod <matprod42@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 19:18:14 by Matprod           #+#    #+#             */
-/*   Updated: 2024/04/12 16:10:00 by Matprod          ###   ########.fr       */
+/*   Updated: 2024/05/13 07:22:09 by Matprod          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,5 @@ char	*ft_strdup(char *s)
 		index ++;
 	}
 	dup_str[index] = '\0';
-	//free(s);
 	return (dup_str);
 }

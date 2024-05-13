@@ -6,13 +6,13 @@
 /*   By: Matprod <matprod42@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/15 23:22:55 by Matprod           #+#    #+#             */
-/*   Updated: 2024/04/22 17:18:20 by Matprod          ###   ########.fr       */
+/*   Updated: 2024/05/13 08:10:08 by Matprod          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void get_start_and_end(t_point *start, t_point *end, char **map)
+void	get_start_and_end(t_point *start, t_point *end, char **map)
 {
 	int	i;
 	int	j;
@@ -36,6 +36,7 @@ void get_start_and_end(t_point *start, t_point *end, char **map)
 		}
 	}
 }
+
 char	**dup_map(char **map)
 {
 	char		**dup;
@@ -55,6 +56,7 @@ char	**dup_map(char **map)
 	dup[height] = 0;
 	return (dup);
 }
+
 void	fill(t_data *data, char **map, int x, int y)
 {
 	if (map[y][x] == 'C')
@@ -86,14 +88,12 @@ int	flood_fill(t_data *data)
 {
 	t_point	start;
 	t_point	end;
+	char	**dup;
 
 	start.x = 0;
 	start.y = 0;
 	end.y = 0;
 	end.x = 0;
-
-	char	**dup;
-
 	dup = dup_map(data->map);
 	if (!dup)
 		return (0);
@@ -108,4 +108,3 @@ int	flood_fill(t_data *data)
 	free_array(dup);
 	return (0);
 }
-

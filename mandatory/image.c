@@ -6,7 +6,7 @@
 /*   By: Matprod <matprod42@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 18:27:29 by Matprod           #+#    #+#             */
-/*   Updated: 2024/04/15 17:11:22 by Matprod          ###   ########.fr       */
+/*   Updated: 2024/05/13 07:22:58 by Matprod          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ void	fail_xpm(t_data *data, int index)
 	i = -1;
 	while (++i < index)
 		mlx_destroy_image(data->mlx, data->texture[i]);
-	//ft_printf("FAIL");
 	mlx_destroy_window(data->mlx, data->win);
 	mlx_destroy_display(data->mlx);
 	free(data->mlx);
@@ -38,8 +37,8 @@ void	*ft_open_xpm(t_data *data, char *path, int index)
 
 	img = mlx_xpm_file_to_image(data->mlx, path, &data->img_size,
 			&data->img_size);
- 	if (!img)
-		fail_xpm(data, index); 
+	if (!img)
+		fail_xpm(data, index);
 	return (img);
 }
 

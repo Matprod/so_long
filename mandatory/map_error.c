@@ -6,13 +6,13 @@
 /*   By: Matprod <matprod42@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 15:53:18 by Matprod           #+#    #+#             */
-/*   Updated: 2024/04/22 17:18:31 by Matprod          ###   ########.fr       */
+/*   Updated: 2024/05/13 08:17:23 by Matprod          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-bool line_of_wall(char *map, int len)
+t_bool	line_of_wall(char *map, int len)
 {
 	len--;
 	while (--len >= 0)
@@ -23,13 +23,12 @@ bool line_of_wall(char *map, int len)
 	return (TRUE);
 }
 
-bool	check_size(t_data *data, char **map)
+t_bool	check_size(t_data *data, char **map)
 {
 	int			i;
 	int			first_line;
 
 	i = -1;
-	//print_tableau(map);
 	first_line = ft_strlen(map[0]);
 	if (!line_of_wall(map[0], first_line))
 		return (FALSE);
@@ -45,80 +44,79 @@ bool	check_size(t_data *data, char **map)
 	return (TRUE);
 }
 
-bool check_exit(char **map)
+t_bool	check_exit(char **map)
 {
-	int i;
-	int number_of_exit;
-	int j;
+	int		i;
+	int		number_of_exit;
+	int		j;
+	t_bool	exit;
 
+	exit = FALSE;
 	number_of_exit = 0;
-	bool exit = FALSE;
 	i = -1;
-	while(map[++i])
+	while (map[++i])
 	{
 		j = -1;
-		while(map[i][++j])
+		while (map[i][++j])
 		{
-			if(map[i][j] == 'E')
+			if (map[i][j] == 'E')
 				number_of_exit++;
 		}
 	}
-	if(number_of_exit == 1)
+	if (number_of_exit == 1)
 		exit = TRUE;
 	else
 		exit = FALSE;
 	return (exit);
 }
 
-bool check_player(char **map)
+t_bool	check_player(char **map)
 {
-	int i;
-	int number_of_player;
-	int j;
+	int		i;
+	int		number_of_player;
+	int		j;
+	t_bool	exit;
 
+	exit = FALSE;
 	number_of_player = 0;
-	bool exit = FALSE;
 	i = -1;
-	while(map[++i])
+	while (map[++i])
 	{
 		j = -1;
-		while(map[i][++j])
+		while (map[i][++j])
 		{
-			if(map[i][j] == 'P')
+			if (map[i][j] == 'P')
 				number_of_player++;
 		}
 	}
-	if(number_of_player == 1)
+	if (number_of_player == 1)
 		exit = TRUE;
 	else
 		exit = FALSE;
 	return (exit);
 }
 
-bool check_error(t_data *data, char **map)
+t_bool	check_error(t_data *data, char **map)
 {
-	if(!check_player(map))
+	if (!check_player(map))
 	{
 		ft_printf("ERROR : Too much or less player\n");
 		return (FALSE);
 	}
-	if(!check_exit(map))
+	if (!check_exit(map) || data->item_total < 1)
 	{
-		ft_printf("ERROR : Too much or less exit\n");
+		ft_printf("ERROR : error with exit or number of collectibles\n");
 		return (FALSE);
 	}
-	if(!check_size(data, map))
+	if (!check_size(data, map))
 	{
 		ft_printf("ERROR : Problem with size or walls around the map\n");
 		return (FALSE);
 	}
-	if(!flood_fill(data))
+	if (!flood_fill(data))
 	{
-		ft_printf("ERROR : Players can't reach every collectibles or the exit\n");
+		ft_printf("ERROR : error with collectibles or the exit\n");
 		return (FALSE);
 	}
-	return(TRUE);
-
+	return (TRUE);
 }
-
-	
